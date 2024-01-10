@@ -51,7 +51,7 @@
         <label for="floatingPassword">Last Name</label>
     </div>
     <button type="submit" class="btn btn-primary" style="float: right;">create new user</button>
-    <a href="login.html"><button type="submit" class="btn btn-primary me-2" style="float: right;">sign in</button></a>
+    <a href="login.html"><button type="button" class="btn btn-primary me-2" style="float: right;">sign in</button></a>
    </form>
 
     <script
@@ -89,7 +89,10 @@
 
         createUserWithEmailAndPassword(auth, emailInp.value, pasInp.value)
         .then((credentials) => {
-            console.log(credentials);
+            set(ref(db, "UsersAuthList/" + credentials.user.uid), {
+              firstname : fnameInp.value,
+              latname : lnameInp.value
+            })
         })
         .catch((error) => {
             alert(error.message);
