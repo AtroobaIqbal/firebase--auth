@@ -4,61 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>firebase Auth</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
   </head>
   <body>
    <form id="mainform" class="w-25 m-4">
     <h2 class="mb-3">Register user</h2>
     <div class="form-floating mb-3">
-        <input
-          type="email"
-          class="form-control"
-          id="emailInput"
-          placeholder="name@example.com"
-        />
+        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" />
         <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating mb-3">
-        <input
-          type="password"
-          class="form-control"
-          id="passwordInput"
-          placeholder="Password"
-        />
+        <input type="password" class="form-control" id="passwordInput" placeholder="Password" />
         <label for="floatingPassword">Password</label>
     </div>
     <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control"
-          id="fnameInput"
-          placeholder="name@example.com"
-        />
+        <input type="text" class="form-control" id="fnameInput" placeholder="enter first name" />
         <label for="floatingInput">first Name</label>
     </div>
     <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control"
-          id="lnameInput"
-          placeholder="Password"
-        />
+        <input type="text" class="form-control" id="lnameInput" placeholder="enter last name" />
         <label for="floatingPassword">Last Name</label>
     </div>
     <button type="submit" class="btn btn-primary" style="float: right;">create new user</button>
     <a href="login.html"><button type="button" class="btn btn-primary me-2" style="float: right;">sign in</button></a>
    </form>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
       import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -90,14 +61,14 @@
         createUserWithEmailAndPassword(auth, emailInp.value, pasInp.value)
         .then((credentials) => {
             set(ref(db, "UsersAuthList/" + credentials.user.uid), {
-              firstname : fnameInp.value,
-              latname : lnameInp.value
+              firstname : fnameInput.value,
+              latname : lnameInput.value
             })
         })
         .catch((error) => {
             alert(error.message);
-            console.log(error.code)
-            console.log(error.message)
+            console.log(error.code);
+            console.log(error.message);
         })
       }
       mainform.addEventListener("submit" , RegisterUser);
